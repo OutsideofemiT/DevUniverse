@@ -38,6 +38,8 @@ Just start typing in the notepad.
 ## 🖼️ Preview
 
 ![DevUniverse](https://github.com/user-attachments/assets/25910706-ca8f-4b73-9944-ea0785607270)
+![image](https://github.com/user-attachments/assets/ec258b1f-d4b3-4629-b321-99b4a457c7ef)
+
 
 
 *“Your grid. Your code. Your mission.”*
