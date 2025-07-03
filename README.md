@@ -37,7 +37,8 @@ Just start typing in the notepad.
 
 ## 🖼️ Preview
 
-![Screenshot of DevUniverse showing the to-do modal and notepad](assets/devuniverse-preview.png)
+![DevUniverse](https://github.com/user-attachments/assets/25910706-ca8f-4b73-9944-ea0785607270)
+
 
 *“Your grid. Your code. Your mission.”*
 
