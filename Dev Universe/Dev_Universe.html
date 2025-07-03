@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DevHub Grid Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <h1 title="Welcome to your personal dev dashboard!">🚀 DevUniverse</h1>
+  <p class="mantra">"Code. Create. Conscious."</p>
+
+  <div class="links">
+    <a href="https://example.com">PlaceHolder</a>
+    <a href="https://example.com">PlaceHolder</a>
+    <a href="https://example.com/">PlaceHolder</a>
+    <a href="https://example.com">PlaceHolder</a>
+    <a href="https://example.com">PlaceHolder</a>
+    <a href="assets\example.com">PlaceHolder</a>
+  </div>
+
+  <div class="notepad">
+    <label for="notepad" class="sr-only">Notepad</label>
+    <textarea id="notepad" placeholder="Type your thoughts, intentions, or reminders..."></textarea>
+  </div>
+
+  <div id="todo-modal" class="hidden">
+    <div class="todo-content">
+      <h3>🗒️ To-Do List</h3>
+      <ul id="todo-list"></ul>
+      <button onclick="hideTodoModal()">Hide</button>
+    </div>
+  </div>
+
+  <footer>
+    Your grid. Your code. Your mission.
+  </footer>
+
+  <!-- Save note content -->
+  <script>
+    const pad = document.getElementById("notepad");
+    pad.value = localStorage.getItem("note") || "";
+    pad.addEventListener("input", () => {
+      localStorage.setItem("note", pad.value);
+    });
+  </script><!-- 🔥 Load the modal + todo extraction logic -->
+  <script src="addons/todo.js"></script>
+</body>
+</html>
+
