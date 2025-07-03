@@ -58,11 +58,11 @@ Just start typing in the notepad.
 💡 Customization Ideas- Add widgets like weather, quotes, or music via open APIs
 - Integrate GitHub issues or Notion pages for dynamic syncing
 - Enhance with authentication and database storage (Firebase, Supabase, etc.)
-🛠️ Built With- HTML5 + CSS3
+## 🛠️ Built With- HTML5 + CSS3
 - JavaScript (Vanilla)
 - Local Storage API
 - Modular JS in addons/todo.js
-🧠 PhilosophyDevUniverse isn't just a dashboard.
+## 🧠 PhilosophyDevUniverse isn't just a dashboard.
 It's a digital altar—a calm grid where developers align their work with presence and purpose.Inspired by minimalism, productivity rituals, and cosmic curiosity.
 You bring the mission. This helps you launch it.📂 Folder Structure├── Dev_Universe.html
 ├── style.css
@@ -70,7 +70,7 @@ You bring the mission. This helps you launch it.📂 Folder Structure├── D
 │   └── todo.js
 ├── assets/
 │   └── devuniverse-preview.png
-🚀 LicenseMIT © outsideofemiT
+##🚀 LicenseMIT © outsideofemiT
 Let me know if you’d like to plug in your GitHub handle, include attribution to Kairo Collective as the umbrella studio, or give this a better license footnote. I can also help you convert it into a clean Notion case study or interactive GitHub README with animations or terminal previews.
 
 Ready to launch this into the wild, or want to refine the tone further?
