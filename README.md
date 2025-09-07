@@ -74,7 +74,7 @@ You bring the mission. This helps you launch it.
 ├── assets/
 │   └── devuniverse-preview.png
 ## 🚀 License MIT © outsideofemiT
-Let me know if you’d like to plug in your GitHub handle, include attribution to Kairo Collective as the umbrella studio, or give this a better license footnote. I can also help you convert it into a clean Notion case study or interactive GitHub README with animations or terminal previews.
+
 
 Ready to launch this into the wild, or want to refine the tone further?
 
