@@ -76,5 +76,3 @@ You bring the mission. This helps you launch it.
 ## 🚀 License MIT © outsideofemiT
 
 
-Ready to launch this into the wild, or want to refine the tone further?
-
