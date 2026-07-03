@@ -27,7 +27,7 @@ DevUniverse is a minimalist, ambient personal dashboard for intentional develope
 4. Click **Saved Notes (n)** to toggle your saved notes list, open a note back into the editor, or delete it.
 
 All tasks, drafts, and saved notes are stored locally in your browser via `localStorage`.  
-No accounts, no sync, no data leaving your machine.[web:168][web:174]
+No accounts, no sync, no data leaving your machine.
 
 > Example workflow:
 > ```text
@@ -45,7 +45,7 @@ No accounts, no sync, no data leaving your machine.[web:168][web:174]
 
 ## 🖼️ Preview
 
-![Screenshot of DevUniverse showing the launch grid, task queue, and Focus Pad](assets/devuniverse-preview.png)
+![Screenshot of DevUniverse showing the launch grid, task queue, and Focus Pad](assets/DevUniverseV1.png)
 
 *“Your grid. Your code. Your mission.”*
 
@@ -75,7 +75,7 @@ No accounts, no sync, no data leaving your machine.[web:168][web:174]
 
 - Add widgets like weather, quotes, or lo‑fi music using open APIs.
 - Wire Launch Grid tiles to GitHub repos, issue trackers, or Notion pages.
-- Swap `localStorage` for a backend (Firebase, Supabase, etc.) if you want sync across devices.[web:168][web:323]
+- Swap `localStorage` for a backend (Firebase, Supabase, etc.) if you want sync across devices.
 - Turn the saved notes drawer into project‑specific note vaults (e.g., “Client A”, “Side Project”).
 
 ---
@@ -105,7 +105,7 @@ No accounts, no sync, no data leaving your machine.[web:168][web:174]
 
 DevUniverse isn’t just a dashboard.
 
-It’s a digital altar — a calm grid where developers align tasks and notes with presence and purpose. Inspired by minimalism, productivity rituals, and cosmic curiosity, it gives you just enough structure to focus without boxing you into a rigid workflow.[web:349]
+It’s a digital altar — a calm grid where developers align tasks and notes with presence and purpose. Inspired by minimalism, productivity rituals, and cosmic curiosity, it gives you just enough structure to focus without boxing you into a rigid workflow.
 
 You bring the mission. This helps you launch it.
 
@@ -113,7 +113,7 @@ You bring the mission. This helps you launch it.
 
 ## 🚀 License
 
-MIT © [Your Name]
+MIT ©  Carmen Wheler, Kairo Collective Studio
 
 Optionally:
 - Add your GitHub handle for attribution.
