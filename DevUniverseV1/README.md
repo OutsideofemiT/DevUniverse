@@ -45,7 +45,7 @@ No accounts, no sync, no data leaving your machine.[web:168][web:174]
 
 ## 🖼️ Preview
 
-![Screenshot of DevUniverse showing the launch grid, task queue, and Focus Pad](assets/devuniverse-preview.png)
+![Screenshot of DevUniverse showing the launch grid, task queue, and Focus Pad](assets/DevUniverseV1.png)
 
 *“Your grid. Your code. Your mission.”*
 
