@@ -27,3 +27,5 @@ document.getElementById("notepad").addEventListener("input", () => {
     showTodoModal();
   }
 });
+
+//commit for Readme Update

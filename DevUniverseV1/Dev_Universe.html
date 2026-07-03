@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevUniverse Portal</title>
+  <style>
+    :root {
+      --bg: #040814;
+      --bg-overlay: rgba(3, 8, 20, 0.78);
+      --panel: rgba(10, 16, 31, 0.86);
+      --panel-strong: rgba(12, 19, 36, 0.94);
+      --panel-soft: rgba(255, 255, 255, 0.03);
+      --text: #eaf4ff;
+      --muted: #8da2c4;
+      --muted-2: #6e84a8;
+      --accent: #27e1d3;
+      --accent-2: #53c7ff;
+      --border: rgba(61, 216, 255, 0.16);
+      --border-strong: rgba(61, 216, 255, 0.28);
+      --danger: #ff7c92;
+      --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.45);
+      --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.35);
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 2rem;
+      font-family: "Segoe UI", "Inter", sans-serif;
+      color: var(--text);
+      text-align: left;
+      background:
+        linear-gradient(var(--bg-overlay), var(--bg-overlay)),
+        url("assets/Skygrid.png") no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at top center, rgba(39, 225, 211, 0.12), transparent 28%),
+        radial-gradient(circle at 20% 20%, rgba(83, 199, 255, 0.08), transparent 22%);
+      z-index: 0;
+    }
+
+    body > * {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero {
+      margin-bottom: 2rem;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.5rem;
+      color: var(--accent);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0 0 0.35rem;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      text-shadow: 0 0 18px rgba(83, 199, 255, 0.12);
+    }
+
+    p.mantra {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--muted);
+    }
+
+    .dashboard {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .panel {
+      padding: 1rem;
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(180deg, rgba(10, 16, 31, 0.82), rgba(6, 11, 23, 0.9));
+      border: 1px solid rgba(83, 199, 255, 0.08);
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(10px);
+    }
+
+    .section-head {
+      margin-bottom: 1rem;
+    }
+
+    .section-head h2 {
+      margin: 0 0 0.35rem;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 70ch;
+    }
+
+    .links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .launch-card {
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      text-align: center;
+      border-radius: var(--radius-md);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(83, 199, 255, 0.12);
+      color: #d9e9ff;
+      font-weight: 600;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      transition: transform 0.2s ease, border-color 0.25s ease, box-shadow 0.25s ease,
+        background 0.25s ease;
+    }
+
+    .launch-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-strong);
+      box-shadow:
+        0 0 0 1px rgba(39, 225, 211, 0.08),
+        0 12px 24px rgba(0, 0, 0, 0.28);
+      background:
+        linear-gradient(180deg, rgba(39, 225, 211, 0.08), rgba(255, 255, 255, 0.03));
+    }
+
+    .focus-shell {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .task-subsection,
+    .notes-subsection {
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .task-subhead,
+    .notes-subhead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .task-subhead h3,
+    .notes-subhead h3 {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .task-subhead span,
+    .notes-status {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .task-composer,
+    .note-title-row,
+    .note-actions {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+
+    #task-input,
+    #note-title {
+      width: 100%;
+      min-height: 46px;
+      padding: 0.9rem 1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.025);
+      color: var(--text);
+      outline: none;
+      font-size: 0.98rem;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    #task-input::placeholder,
+    #note-title::placeholder,
+    #notepad::placeholder {
+      color: var(--muted);
+    }
+
+    #task-input:focus,
+    #note-title:focus,
+    #notepad:focus {
+      border-color: var(--border-strong);
+      background: rgba(255, 255, 255, 0.035);
+      box-shadow: 0 0 0 3px rgba(39, 225, 211, 0.08);
+    }
+
+    #add-task-btn,
+    #save-note-btn,
+    #clear-draft-btn,
+    .saved-notes-toggle,
+    .task-delete,
+    .note-open,
+    .note-delete {
+      border: 1px solid rgba(83, 199, 255, 0.16);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    #add-task-btn,
+    #save-note-btn,
+    #clear-draft-btn {
+      min-height: 46px;
+      padding: 0.8rem 1.1rem;
+      font-weight: 600;
+    }
+
+    #add-task-btn,
+    #save-note-btn {
+      background: linear-gradient(180deg, rgba(39, 225, 211, 0.14), rgba(83, 199, 255, 0.08));
+    }
+
+    #clear-draft-btn {
+      color: var(--muted);
+    }
+
+    .saved-notes-toggle {
+      width: 100%;
+      min-height: 48px;
+      padding: 0.9rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-weight: 600;
+      margin-top: 0.25rem;
+    }
+
+    .saved-notes-toggle:hover,
+    #add-task-btn:hover,
+    #save-note-btn:hover,
+    #clear-draft-btn:hover {
+      transform: translateY(-1px);
+      border-color: var(--border-strong);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+    }
+
+    .saved-notes-toggle .chevron {
+      transition: transform 0.2s ease;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .saved-notes-toggle[aria-expanded="true"] .chevron {
+      transform: rotate(180deg);
+    }
+
+    #add-task-btn:focus-visible,
+    #save-note-btn:focus-visible,
+    #clear-draft-btn:focus-visible,
+    .saved-notes-toggle:focus-visible,
+    .task-delete:focus-visible,
+    .note-open:focus-visible,
+    .note-delete:focus-visible,
+    .task-check-wrap:focus-within,
+    #task-input:focus-visible,
+    #note-title:focus-visible,
+    #notepad:focus-visible {
+      outline: 2px solid rgba(39, 225, 211, 0.6);
+      outline-offset: 3px;
+    }
+
+    .task-empty-state,
+    .saved-notes-empty {
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      border: 1px dashed rgba(83, 199, 255, 0.12);
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.02);
+      margin-bottom: 0.75rem;
+    }
+
+    .task-list,
+    .saved-notes-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .task-item,
+    .saved-note-item {
+      display: grid;
+      gap: 0.85rem;
+      padding: 0.9rem 1rem;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .task-item {
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+    }
+
+    .task-check-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 22px;
+      min-height: 22px;
+      cursor: pointer;
+    }
+
+    .task-check {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .task-custom-check {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(83, 199, 255, 0.4);
+      background: rgba(255, 255, 255, 0.02);
+      display: inline-block;
+      box-shadow: inset 0 0 0 2px transparent;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .task-check:checked + .task-custom-check {
+      background: rgba(39, 225, 211, 0.18);
+      border-color: var(--accent);
+      box-shadow: inset 0 0 0 5px var(--accent);
+    }
+
+    .task-text {
+      color: var(--text);
+      line-height: 1.45;
+      word-break: break-word;
+    }
+
+    .task-item.is-done .task-text {
+      color: var(--muted);
+      text-decoration: line-through;
+      opacity: 0.8;
+    }
+
+    .task-delete,
+    .note-open,
+    .note-delete {
+      min-height: 34px;
+      padding: 0.5rem 0.85rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1;
+    }
+
+    .task-delete {
+      width: 34px;
+      padding: 0;
+      font-size: 1.1rem;
+    }
+
+    .task-delete:hover,
+    .note-delete:hover {
+      color: #fff;
+      border-color: rgba(255, 120, 120, 0.3);
+      background: rgba(255, 120, 120, 0.08);
+    }
+
+    .note-open:hover {
+      color: #fff;
+      border-color: var(--border-strong);
+      background: rgba(39, 225, 211, 0.08);
+    }
+
+    #notepad {
+      width: 100%;
+      min-height: 220px;
+      padding: 1rem 1.1rem;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-md);
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.6;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      margin-bottom: 0.85rem;
+    }
+
+    .saved-notes-panel {
+      display: none;
+      margin-top: 0.85rem;
+    }
+
+    .saved-notes-panel.open {
+      display: block;
+    }
+
+    .saved-note-item {
+      grid-template-columns: 1fr auto;
+      align-items: start;
+    }
+
+    .saved-note-main {
+      min-width: 0;
+    }
+
+    .saved-note-title {
+      margin: 0 0 0.35rem;
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .saved-note-preview {
+      margin: 0 0 0.45rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .saved-note-time {
+      color: var(--muted-2);
+      font-size: 0.78rem;
+    }
+
+    .saved-note-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    footer {
+      font-size: 0.92rem;
+      color: var(--muted);
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1.25rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .panel,
+      .task-subsection,
+      .notes-subsection {
+        padding: 0.9rem;
+      }
+
+      .links {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      }
+
+      .launch-card {
+        min-height: 78px;
+      }
+
+      .task-subhead,
+      .notes-subhead {
+        align-items: flex-start;
+      }
+
+      .task-composer,
+      .note-title-row,
+      .note-actions,
+      .saved-note-item {
+        grid-template-columns: 1fr;
+      }
+
+      .saved-note-actions {
+        justify-content: flex-start;
+      }
+
+      #notepad {
+        min-height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <p class="eyebrow">Developer Command Center</p>
+    <h1 title="Welcome to your personal dev dashboard!">🚀 DevUniverse</h1>
+    <p class="mantra">Code. Create. Conscious.</p>
+  </header>
+
+  <main class="dashboard">
+    <section class="panel">
+      <div class="section-head">
+        <h2>Launch Grid</h2>
+        <p>Starter categories for shaping your own developer dashboard.</p>
+      </div>
+
+      <div class="links">
+        <div class="launch-card">AI Agent</div>
+        <div class="launch-card">Deployment Site</div>
+        <div class="launch-card">Git Repo</div>
+        <div class="launch-card">Docs Hub</div>
+        <div class="launch-card">Design Board</div>
+        <div class="launch-card">Database Console</div>
+        <div class="launch-card">Client Portal</div>
+        <div class="launch-card">API Monitor</div>
+      </div>
+    </section>
+
+    <section class="panel focus-shell">
+      <div class="section-head">
+        <h2>Focus Pad</h2>
+        <p>Track tasks first, then save notes without leaving them cluttered in the editor.</p>
+      </div>
+
+      <div class="task-subsection">
+        <div class="task-subhead">
+          <h3>Task Queue</h3>
+          <span id="task-count">0 tasks</span>
+        </div>
+
+        <div class="task-composer">
+          <label for="task-input" class="sr-only">Add a task</label>
+          <input id="task-input" type="text" placeholder="Add a task..." />
+          <button id="add-task-btn" type="button">Add</button>
+        </div>
+
+        <div id="task-empty-state" class="task-empty-state">
+          No tasks yet. Add one to get started.
+        </div>
+
+        <ul id="task-list" class="task-list" aria-live="polite"></ul>
+      </div>
+
+      <div class="notes-subsection">
+        <div class="notes-subhead">
+          <h3>Notes</h3>
+          <span class="notes-status" id="draft-status">Draft autosaves locally</span>
+        </div>
+
+        <div class="note-title-row">
+          <label for="note-title" class="sr-only">Note title</label>
+          <input id="note-title" type="text" placeholder="Note title (optional)" />
+        </div>
+
+        <label for="notepad" class="sr-only">Focus Pad Notes</label>
+        <textarea
+          id="notepad"
+          placeholder="Capture ideas, priorities, reminders, and rough planning here..."
+        ></textarea>
+
+        <div class="note-actions">
+          <button id="save-note-btn" type="button">Save Note</button>
+          <button id="clear-draft-btn" type="button">Clear Draft</button>
+        </div>
+
+        <button
+          id="saved-notes-toggle"
+          class="saved-notes-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="saved-notes-panel"
+        >
+          <span id="saved-note-count">Saved Notes (0)</span>
+          <span class="chevron">⌄</span>
+        </button>
+
+        <div id="saved-notes-panel" class="saved-notes-panel">
+          <div id="saved-notes-empty" class="saved-notes-empty">
+            No saved notes yet.
+          </div>
+
+          <ul id="saved-notes-list" class="saved-notes-list" aria-live="polite"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Your grid. Your code. Your mission.
+  </footer>
+
+  <script>
+    const taskInput = document.getElementById("task-input");
+    const addTaskBtn = document.getElementById("add-task-btn");
+    const taskList = document.getElementById("task-list");
+    const taskEmptyState = document.getElementById("task-empty-state");
+    const taskCount = document.getElementById("task-count");
+
+    const noteTitle = document.getElementById("note-title");
+    const notePad = document.getElementById("notepad");
+    const saveNoteBtn = document.getElementById("save-note-btn");
+    const clearDraftBtn = document.getElementById("clear-draft-btn");
+    const draftStatus = document.getElementById("draft-status");
+
+    const savedNotesToggle = document.getElementById("saved-notes-toggle");
+    const savedNotesPanel = document.getElementById("saved-notes-panel");
+    const savedNotesList = document.getElementById("saved-notes-list");
+    const savedNotesEmpty = document.getElementById("saved-notes-empty");
+    const savedNoteCount = document.getElementById("saved-note-count");
+
+    let tasks = JSON.parse(localStorage.getItem("devuniverse.tasks")) || [];
+    let savedNotes = JSON.parse(localStorage.getItem("devuniverse.savedNotes")) || [];
+    let currentDraft = JSON.parse(localStorage.getItem("devuniverse.noteDraft")) || {
+      title: "",
+      body: ""
+    };
+    let editingNoteId = null;
+
+    noteTitle.value = currentDraft.title || "";
+    notePad.value = currentDraft.body || "";
+
+    function saveTasks() {
+      localStorage.setItem("devuniverse.tasks", JSON.stringify(tasks));
+    }
+
+    function saveSavedNotes() {
+      localStorage.setItem("devuniverse.savedNotes", JSON.stringify(savedNotes));
+    }
+
+    function saveCurrentDraft() {
+      currentDraft = {
+        title: noteTitle.value,
+        body: notePad.value
+      };
+      localStorage.setItem("devuniverse.noteDraft", JSON.stringify(currentDraft));
+    }
+
+    function updateTaskCount() {
+      const total = tasks.length;
+      taskCount.textContent = `${total} ${total === 1 ? "task" : "tasks"}`;
+    }
+
+    function updateSavedNoteCount() {
+      const total = savedNotes.length;
+      savedNoteCount.textContent = `Saved Notes (${total})`;
+    }
+
+    function updateSaveButtonLabel() {
+      saveNoteBtn.textContent = editingNoteId ? "Update Note" : "Save Note";
+    }
+
+    function ensureSavedNotesPanelOpen() {
+      savedNotesToggle.setAttribute("aria-expanded", "true");
+      savedNotesPanel.classList.add("open");
+    }
+
+    function renderTasks() {
+      taskList.innerHTML = "";
+
+      if (!tasks.length) {
+        taskEmptyState.style.display = "block";
+        updateTaskCount();
+        return;
+      }
+
+      taskEmptyState.style.display = "none";
+
+      tasks.forEach((task, index) => {
+        const li = document.createElement("li");
+        li.className = `task-item ${task.done ? "is-done" : ""}`;
+
+        li.innerHTML = `
+          <label class="task-check-wrap">
+            <input
+              type="checkbox"
+              class="task-check"
+              data-index="${index}"
+              ${task.done ? "checked" : ""}
+            />
+            <span class="task-custom-check"></span>
+          </label>
+          <span class="task-text"></span>
+          <button
+            type="button"
+            class="task-delete"
+            data-index="${index}"
+            aria-label="Delete task"
+          >×</button>
+        `;
+
+        li.querySelector(".task-text").textContent = task.text;
+        taskList.appendChild(li);
+      });
+
+      updateTaskCount();
+    }
+
+    function renderSavedNotes() {
+      savedNotesList.innerHTML = "";
+
+      if (!savedNotes.length) {
+        savedNotesEmpty.style.display = "block";
+        updateSavedNoteCount();
+        return;
+      }
+
+      savedNotesEmpty.style.display = "none";
+
+      savedNotes.forEach((note) => {
+        const li = document.createElement("li");
+        li.className = "saved-note-item";
+
+        const title = note.title?.trim() || "Untitled Note";
+        const preview = note.body?.trim() || "No content";
+        const shortPreview = preview.length > 140 ? preview.slice(0, 140) + "..." : preview;
+
+        li.innerHTML = `
+          <div class="saved-note-main">
+            <p class="saved-note-title"></p>
+            <p class="saved-note-preview"></p>
+            <div class="saved-note-time"></div>
+          </div>
+          <div class="saved-note-actions">
+            <button type="button" class="note-open" data-id="${note.id}">Open</button>
+            <button type="button" class="note-delete" data-id="${note.id}">Delete</button>
+          </div>
+        `;
+
+        li.querySelector(".saved-note-title").textContent = title;
+        li.querySelector(".saved-note-preview").textContent = shortPreview;
+        li.querySelector(".saved-note-time").textContent = formatDate(note.updatedAt);
+
+        savedNotesList.appendChild(li);
+      });
+
+      updateSavedNoteCount();
+    }
+
+    function addTask() {
+      const value = taskInput.value.trim();
+      if (!value) return;
+
+      tasks.unshift({
+        text: value,
+        done: false
+      });
+
+      saveTasks();
+      renderTasks();
+      taskInput.value = "";
+      taskInput.focus();
+    }
+
+    function saveDraft() {
+      saveCurrentDraft();
+      draftStatus.textContent = editingNoteId ? "Editing draft autosaved locally" : "Draft autosaved locally";
+    }
+
+    function clearDraft(statusMessage = "Draft cleared") {
+      noteTitle.value = "";
+      notePad.value = "";
+      editingNoteId = null;
+      updateSaveButtonLabel();
+      currentDraft = { title: "", body: "" };
+      localStorage.setItem("devuniverse.noteDraft", JSON.stringify(currentDraft));
+      draftStatus.textContent = statusMessage;
+      noteTitle.focus();
+    }
+
+    function formatDate(timestamp) {
+      return new Date(timestamp).toLocaleString([], {
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit"
+      });
+    }
+
+    function saveNote() {
+      const title = noteTitle.value.trim();
+      const body = notePad.value.trim();
+
+      if (!title && !body) return;
+
+      if (editingNoteId) {
+        savedNotes = savedNotes.map((note) =>
+          note.id === editingNoteId
+            ? { ...note, title, body, updatedAt: Date.now() }
+            : note
+        );
+        saveSavedNotes();
+        renderSavedNotes();
+        clearDraft("Note updated");
+        return;
+      }
+
+      const note = {
+        id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
+        title,
+        body,
+        updatedAt: Date.now()
+      };
+
+      savedNotes.unshift(note);
+      saveSavedNotes();
+      renderSavedNotes();
+      ensureSavedNotesPanelOpen();
+      clearDraft("Note saved");
+    }
+
+    function toggleSavedNotes() {
+      const isOpen = savedNotesToggle.getAttribute("aria-expanded") === "true";
+      savedNotesToggle.setAttribute("aria-expanded", String(!isOpen));
+      savedNotesPanel.classList.toggle("open", !isOpen);
+    }
+
+    addTaskBtn.addEventListener("click", addTask);
+
+    taskInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        addTask();
+      }
+    });
+
+    taskList.addEventListener("click", (event) => {
+      const deleteBtn = event.target.closest(".task-delete");
+
+      if (deleteBtn) {
+        const index = Number(deleteBtn.dataset.index);
+        tasks.splice(index, 1);
+        saveTasks();
+        renderTasks();
+      }
+    });
+
+    taskList.addEventListener("change", (event) => {
+      const checkbox = event.target.closest(".task-check");
+
+      if (checkbox) {
+        const index = Number(checkbox.dataset.index);
+        tasks[index].done = checkbox.checked;
+        saveTasks();
+        renderTasks();
+      }
+    });
+
+    noteTitle.addEventListener("input", saveDraft);
+    notePad.addEventListener("input", saveDraft);
+    saveNoteBtn.addEventListener("click", saveNote);
+    clearDraftBtn.addEventListener("click", () => clearDraft());
+    savedNotesToggle.addEventListener("click", toggleSavedNotes);
+
+    savedNotesList.addEventListener("click", (event) => {
+      const openBtn = event.target.closest(".note-open");
+      const deleteBtn = event.target.closest(".note-delete");
+
+      if (openBtn) {
+        const note = savedNotes.find((item) => item.id === openBtn.dataset.id);
+        if (!note) return;
+
+        noteTitle.value = note.title || "";
+        notePad.value = note.body || "";
+        editingNoteId = note.id;
+        updateSaveButtonLabel();
+        saveCurrentDraft();
+        draftStatus.textContent = "Editing saved note";
+        noteTitle.focus();
+        window.scrollTo({
+          top: document.querySelector(".notes-subsection").offsetTop - 24,
+          behavior: "smooth"
+        });
+      }
+
+      if (deleteBtn) {
+        const targetId = deleteBtn.dataset.id;
+        savedNotes = savedNotes.filter((item) => item.id !== targetId);
+
+        if (editingNoteId === targetId) {
+          clearDraft("Editing note was deleted");
+        }
+
+        saveSavedNotes();
+        renderSavedNotes();
+      }
+    });
+
+    updateSaveButtonLabel();
+    renderTasks();
+    renderSavedNotes();
+  </script>
+</body>
+</html>
