@@ -1,121 +1,35 @@
-# 🚀 DevUniverse
+# DevUniverse V1
 
-*A cosmic command center for developers who code with clarity.*
+A personal developer dashboard built with HTML, CSS, and vanilla JavaScript. It brings a task list and notes workspace together in a dark, space-inspired interface.
 
-DevUniverse is a minimalist, ambient personal dashboard for intentional developers. It sits quietly in the background while you work, combining a mantra-driven interface with a focused task queue and a notes pad that saves what matters without cluttering your workspace.
+This is the original public project. DevUniverse Portal is a separate, private project that builds on the dashboard concept.
 
----
+## Preview
 
-## 🌌 Features
+![DevUniverse V1 dashboard](assets/DevUniverseV1.png)
 
-| Feature                | Description |
-|------------------------|-------------|
-| 💬 **Mantra Welcome**  | Sets the tone with a guiding philosophy — *“Code. Create. Conscious.”* |
-| 📦 **Launch Grid**     | Galaxy-styled placeholder tiles (AI Agent, Deployment Site, Git Repo, etc.) ready to be wired to your own tools |
-| ✅ **Task Queue**      | Lightweight local to‑do list with input + Add button, checkboxes, and deletion — all stored in `localStorage` |
-| 📝 **Notes Composer**  | Title + note editor with draft autosave so you never lose in‑progress thoughts |
-| 🗂️ **Saved Notes Drawer** | Collapsible list of saved notes with previews and timestamps, kept out of the editor until you need them |
-| 🎯 **Focus‑Centered UI** | Calm, dark, galaxy‑inspired theme designed for clarity, not noise |
+## What it does
 
----
+- Add tasks, mark them complete, and delete them.
+- Write notes with an optional title. Drafts save automatically as you type.
+- Save notes to a collapsible list with previews and timestamps.
+- Reopen saved notes to edit them, or delete notes you no longer need.
+- Adapt the layout for smaller screens.
 
-## ✨ How It Works
+Tasks, saved notes, and the current draft are stored in the browser using `localStorage`. There are no accounts or cross-device sync. Clearing the browser's stored site data removes those records.
 
-1. Use the **Task Queue** at the top of the Focus Pad to capture what you need to do.
-2. Use the **Notes** composer to draft ideas, plans, and context — drafts auto‑save locally.
-3. Click **Save Note** to archive the current note into the saved notes drawer and clear the editor.
-4. Click **Saved Notes (n)** to toggle your saved notes list, open a note back into the editor, or delete it.
+The Launch Grid contains eight starter categories, including a Git repo, docs hub, and deployment site. In this version, they are display tiles, not connected services or working links.
 
-All tasks, drafts, and saved notes are stored locally in your browser via `localStorage`.  
-No accounts, no sync, no data leaving your machine.[web:168][web:174]
+## Run locally
 
-> Example workflow:
-> ```text
-> Task Queue:
-> - Add task: “Ship DevUniverse v1”
-> - Add task: “Wire Launch Grid to my tools”
->
-> Notes:
-> Title: DevUniverse v1 launch checklist
-> Body: Outline features, record bugs, capture ideas…
-> [Save Note]
-> ```
+From the repository root, open `DevUniverseV1/Dev_Universe.html` in your browser. If you are already working in this folder, open `Dev_Universe.html`. There is no package installation or build step.
 
----
+For a local-server workflow, serve this folder with your preferred static server and open `Dev_Universe.html` through it.
 
-## 🖼️ Preview
+## Customization
 
-![Screenshot of DevUniverse showing the launch grid, task queue, and Focus Pad](assets/DevUniverseV1.png)
+The current page defines its styles and application logic directly in `Dev_Universe.html`. Edit that file to change the layout, task and note behavior, or launch tiles. The background image is `assets/Skygrid.png`, and the screenshot used above is `assets/DevUniverseV1.png`.
 
-*“Your grid. Your code. Your mission.”*
+## Built by
 
----
-
-## 🔧 Setup Instructions
-
-1. Clone or download the repository  
-   ```bash
-   git clone https://github.com/your-username/devuniverse.git
-   cd devuniverse
-   ```
-
-2. Open the main HTML in your browser:
-   ```text
-   Dev_Universe.html
-   ```
-
-3. Customize:
-   - 🪐 **Launch Grid** tiles in the HTML for your real tools (GitHub, CI, docs, etc.)
-   - 🖋️ **Mantra** message to match your own philosophy
-   - 🎨 **style.css** for colors, typography, and layout tweaks
-
----
-
-## 💡 Customization Ideas
-
-- Add widgets like weather, quotes, or lo‑fi music using open APIs.
-- Wire Launch Grid tiles to GitHub repos, issue trackers, or Notion pages.
-- Swap `localStorage` for a backend (Firebase, Supabase, etc.) if you want sync across devices.[web:168][web:323]
-- Turn the saved notes drawer into project‑specific note vaults (e.g., “Client A”, “Side Project”).
-
----
-
-## 🛠️ Built With
-
-- HTML5 + CSS3
-- Vanilla JavaScript
-- Local Storage API
-
----
-
-## 📂 Folder Structure
-
-```text
-├── Dev_Universe.html
-├── style.css
-├── addons/
-│   └── todo.js        # (optional legacy todo logic if you keep it around)
-├── assets/
-│   └── devuniverse-preview.png
-```
-
----
-
-## 🧠 Philosophy
-
-DevUniverse isn’t just a dashboard.
-
-It’s a digital altar — a calm grid where developers align tasks and notes with presence and purpose. Inspired by minimalism, productivity rituals, and cosmic curiosity, it gives you just enough structure to focus without boxing you into a rigid workflow.[web:349]
-
-You bring the mission. This helps you launch it.
-
----
-
-## 🚀 License
-
-MIT © [Your Name]
-
-Optionally:
-- Add your GitHub handle for attribution.
-- Mention Kairo Collective (or your studio name) as the umbrella brand.
-- Link to a live demo or case study once you deploy.
+Carmen Wheeler / Kairo Collective Studio
